@@ -1,9 +1,14 @@
-name = "remix-cloudflare-workers-template"
+name = "test-pokemon-app"
 
 main = "./server.ts"
 workers_dev = true
 # https://developers.cloudflare.com/workers/platform/compatibility-dates
 compatibility_date = "2023-04-20"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "prod-deck-build-db"
+database_id = "9c47ef93-f800-4e2a-8b47-6b89f38319c0"
 
 [site]
 bucket = "./build/client"
