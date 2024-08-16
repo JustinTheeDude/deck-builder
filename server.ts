@@ -6,6 +6,9 @@ import * as build from "./build/server"; // eslint-disable-line import/no-unreso
 // eslint-disable-next-line import/no-unresolved
 import __STATIC_CONTENT_MANIFEST from "__STATIC_CONTENT_MANIFEST";
 
+import { sql } from "drizzle-orm";
+import { text, integer, sqliteTable } from "drizzle-orm/sqlite-core";
+
 const MANIFEST = JSON.parse(__STATIC_CONTENT_MANIFEST);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const handleRemixRequest = createRequestHandler(build as any as ServerBuild);
@@ -53,4 +56,8 @@ export default {
       return new Response("An unexpected error occurred", { status: 500 });
     }
   },
+
+  scheduled() {
+    
+  }
 } satisfies ExportedHandler<Env & { __STATIC_CONTENT: KVNamespace<string> }>;
