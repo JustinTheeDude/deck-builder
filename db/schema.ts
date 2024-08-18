@@ -1,13 +1,13 @@
-import { sql, relations } from "drizzle-orm";
-import { text, integer, sqliteTable } from "drizzle-orm/sqlite-core";
+import { relations } from "drizzle-orm";
+import { pgTable, serial, text, integer } from "drizzle-orm/pg-core";
 
-export const users = sqliteTable('users', {
-  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+export const users = pgTable('users', {
+  id: serial("id").primaryKey(),
   userName: text('username'),
 })
 
-export const deck = sqliteTable("deck", {
-  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+export const deck = pgTable("deck", {
+  id: serial("id").primaryKey(),
   deckName: text('deckName'),
   format: text('format'),
   authorId: integer("user_id").notNull().references(() => users.id),

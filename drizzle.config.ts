@@ -3,10 +3,11 @@ import { defineConfig } from "drizzle-kit";
 export default defineConfig({
     schema: "./db/schema.ts",
     out: "./db/migrations",
-    dialect: "sqlite",
-    driver: 'turso',
+    dialect: 'postgresql',
+    migrations: {
+        prefix: 'supabase',
+    },
     dbCredentials: {
-        url: process.env.TURSO_URL!,
-        authToken: process.env.TURSO_DB
-    }
-})
+        url: process.env.SUPABASE_URL!,
+    },
+});
