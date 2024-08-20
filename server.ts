@@ -58,6 +58,6 @@ export default {
   },
 
   scheduled() {
-    
+       
   }
 } satisfies ExportedHandler<Env & { __STATIC_CONTENT: KVNamespace<string> }>;
