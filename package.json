@@ -12,7 +12,8 @@
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate"
+    "migrate": "drizzle-kit migrate",
+    "seed": "npx tsx db/seed.ts"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.2",
