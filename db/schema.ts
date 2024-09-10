@@ -17,6 +17,7 @@ export const cards = pgTable("cards", {
   rules: text("rules").array(),
   moves: text("moves").array(),
   types: text("types").array(),
+  image: text("image"),
 });
 
 export const deck = pgTable("deck", {
