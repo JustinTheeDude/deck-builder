@@ -1,6 +1,6 @@
 {
-  "id": "a771f7f7-967c-4b39-aaad-dacced6c3c7e",
-  "prevId": "cada6761-2442-47a5-837f-4fe33942d764",
+  "id": "33bf6de5-8661-4000-ae1b-e164165deeb3",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -14,8 +14,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "cardName": {
-          "name": "cardName",
+        "card_name": {
+          "name": "card_name",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -55,6 +55,12 @@
           "type": "text[]",
           "primaryKey": false,
           "notNull": false
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -72,8 +78,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "deckName": {
-          "name": "deckName",
+        "deck_name": {
+          "name": "deck_name",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -84,14 +90,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "card_id": {
-          "name": "card_id",
+        "author_id": {
+          "name": "author_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -112,25 +112,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "deck_user_id_users_id_fk": {
-          "name": "deck_user_id_users_id_fk",
+        "deck_author_id_users_id_fk": {
+          "name": "deck_author_id_users_id_fk",
           "tableFrom": "deck",
           "tableTo": "users",
           "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "deck_card_id_cards_id_fk": {
-          "name": "deck_card_id_cards_id_fk",
-          "tableFrom": "deck",
-          "tableTo": "cards",
-          "columnsFrom": [
-            "card_id"
+            "author_id"
           ],
           "columnsTo": [
             "id"
@@ -169,7 +156,7 @@
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         }
       },
       "indexes": {},

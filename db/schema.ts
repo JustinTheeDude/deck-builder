@@ -20,27 +20,29 @@ export const cards = pgTable("cards", {
   image: text("image"),
 });
 
-export const deck = pgTable("deck", {
+export const userSelectedCards = pgTable("user_cards", {
+  id: serial("id").primaryKey(),
+  card: integer("card_id").notNull().references(() => cards.id),
+  deckId: integer("user_deck_id").notNull().references(() => deck.id),
+})
+
+export const deck = pgTable("users_deck", {
   id: serial("id").primaryKey(),
   deckName: text('deck_name'),
   format: text('format'),
   authorId: integer("author_id").notNull().references(() => users.id),
-  cards: integer("card_id").notNull().references(() => cards.id),
   createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull(),
 });
 
-export const cardRelations = relations(deck, ({ many }) => ({
-  cards: many(cards),
-}));
-
-export const userDeckRelations = relations(users, ({ many }) => ({
-  decks: many(deck),
-}));
-
-export const deckRelations = relations(deck, ({ one }) => ({
+export const deckRelations = relations(deck, ({ many, one }) => ({
+  cards: many(userSelectedCards),
   author: one(users, {
     fields: [deck.authorId],
     references: [users.id],
   }),
+}));
+
+export const userDeckRelations = relations(users, ({ many }) => ({
+  decks: many(deck),
 }));

@@ -11,7 +11,9 @@ async function resetTable(db: db, table: Table) {
 
 const seedData = async () => {
     await resetTable(db, schema.users)
+    await resetTable(db, schema.cards)
     await seeds.users(db);
+    await seeds.cards(db);
     await client.end();
 }
 
