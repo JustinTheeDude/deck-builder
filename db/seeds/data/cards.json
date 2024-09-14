@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "card_name": "Alakazam",
+    "sub_type": ["Stage 2"],
+    "artist": "Ken Sugimori",
+    "hp": "80",
+    "rules": [
+      "As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Pokémon to another as long as you don't Knock Out that Pokémon. This power can't be used if Alakazam is Asleep, Confused, or Paralyzed."
+    ],
+    "moves": [
+      "Confuse Ray: Flip a coin. If heads, the Defending Pokémon is now Confused."
+    ],
+    "types": ["Psychic"],
+    "image": "https://images.pokemontcg.io/base1/1_hires.png"
+  },
+  {
+    "id": 2,
+    "card_name": "Blastoise",
+    "sub_type": ["Stage 2"],
+    "artist": "Ken Sugimori",
+    "hp": "100",
+    "rules": [
+      "As often as you like during your turn (before your attack), you may attach 1 Water Energy card to 1 of your Water Pokémon. (This doesn't use up your 1 Energy card attachment for the turn.) This power can't be used if Blastoise is Asleep, Confused, or Paralyzed."
+    ],
+    "moves": [
+      "Hydro Pump: Does 40 damage plus 10 more damage for each Water Energy attached to Blastoise but not used to pay for this attack's Energy cost. Extra Water Energy after the 2nd doesn't count."
+    ],
+    "types": ["Water"],
+    "image": "https://images.pokemontcg.io/base1/2_hires.png"
+  },
+  {
+    "id": 3,
+    "card_name": "Chansey",
+    "sub_type": ["Basic"],
+    "artist": "Ken Sugimori",
+    "hp": "120",
+    "rules": [
+      "Flip a coin. If heads, prevent all damage done to Chansey during your opponent's next turn. (Any other effects of attacks still happen.)",
+      "Chansey does 80 damage to itself."
+    ],
+    "moves": [
+      "Scrunch: Flip a coin. If heads, prevent all damage done to Chansey during your opponent's next turn. (Any other effects of attacks still happen.)",
+      "Double-edge: Chansey does 80 damage to itself."
+    ],
+    "types": ["Colorless"],
+    "image": "https://images.pokemontcg.io/base1/3_hires.png"
+  }
+]

@@ -1,6 +1,6 @@
 {
-  "id": "1d7217d3-4798-40b8-a0de-855b84fc58c8",
-  "prevId": "6b8b9dee-ea6c-412c-aac7-e61d273b9608",
+  "id": "a40e77cb-15e3-49ea-8f2b-304a008ca4ea",
+  "prevId": "ef4a8e73-88c7-48ff-9c18-6683c9fab717",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -55,6 +55,12 @@
           "type": "text[]",
           "primaryKey": false,
           "notNull": false
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -62,8 +68,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.deck": {
-      "name": "deck",
+    "public.users_deck": {
+      "name": "users_deck",
       "schema": "",
       "columns": {
         "id": {
@@ -90,12 +96,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "card_id": {
-          "name": "card_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -112,9 +112,70 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "deck_author_id_users_id_fk": {
-          "name": "deck_author_id_users_id_fk",
-          "tableFrom": "deck",
+        "users_deck_author_id_users_id_fk": {
+          "name": "users_deck_author_id_users_id_fk",
+          "tableFrom": "users_deck",
+          "tableTo": "users",
+          "columnsFrom": [
+            "author_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.user_cards": {
+      "name": "user_cards",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "card_id": {
+          "name": "card_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "author_id": {
+          "name": "author_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_deck_id": {
+          "name": "user_deck_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_cards_card_id_cards_id_fk": {
+          "name": "user_cards_card_id_cards_id_fk",
+          "tableFrom": "user_cards",
+          "tableTo": "cards",
+          "columnsFrom": [
+            "card_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "user_cards_author_id_users_id_fk": {
+          "name": "user_cards_author_id_users_id_fk",
+          "tableFrom": "user_cards",
           "tableTo": "users",
           "columnsFrom": [
             "author_id"
@@ -125,12 +186,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "deck_card_id_cards_id_fk": {
-          "name": "deck_card_id_cards_id_fk",
-          "tableFrom": "deck",
-          "tableTo": "cards",
+        "user_cards_user_deck_id_users_deck_id_fk": {
+          "name": "user_cards_user_deck_id_users_deck_id_fk",
+          "tableFrom": "user_cards",
+          "tableTo": "users_deck",
           "columnsFrom": [
-            "card_id"
+            "user_deck_id"
           ],
           "columnsTo": [
             "id"

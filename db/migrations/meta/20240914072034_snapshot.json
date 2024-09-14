@@ -1,6 +1,6 @@
 {
-  "id": "9dec0b9e-33e4-4135-b702-51c7ed31d81f",
-  "prevId": "6d23cead-5096-4a80-bb02-00c1e9bbc159",
+  "id": "1c7dc2cf-3d54-4c1c-80b3-9720d2060785",
+  "prevId": "a40e77cb-15e3-49ea-8f2b-304a008ca4ea",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -14,8 +14,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "cardName": {
-          "name": "cardName",
+        "card_name": {
+          "name": "card_name",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -55,6 +55,12 @@
           "type": "text[]",
           "primaryKey": false,
           "notNull": false
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -62,8 +68,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.deck": {
-      "name": "deck",
+    "public.users_deck": {
+      "name": "users_deck",
       "schema": "",
       "columns": {
         "id": {
@@ -72,8 +78,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "deckName": {
-          "name": "deckName",
+        "deck_name": {
+          "name": "deck_name",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -84,8 +90,63 @@
           "primaryKey": false,
           "notNull": false
         },
-        "user_id": {
-          "name": "user_id",
+        "author_id": {
+          "name": "author_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "users_deck_author_id_users_id_fk": {
+          "name": "users_deck_author_id_users_id_fk",
+          "tableFrom": "users_deck",
+          "tableTo": "users",
+          "columnsFrom": [
+            "author_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.user_cards": {
+      "name": "user_cards",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "card_id": {
+          "name": "card_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_deck_id": {
+          "name": "user_deck_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -93,12 +154,25 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "deck_user_id_users_id_fk": {
-          "name": "deck_user_id_users_id_fk",
-          "tableFrom": "deck",
-          "tableTo": "users",
+        "user_cards_card_id_cards_id_fk": {
+          "name": "user_cards_card_id_cards_id_fk",
+          "tableFrom": "user_cards",
+          "tableTo": "cards",
           "columnsFrom": [
-            "user_id"
+            "card_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "user_cards_user_deck_id_users_deck_id_fk": {
+          "name": "user_cards_user_deck_id_users_deck_id_fk",
+          "tableFrom": "user_cards",
+          "tableTo": "users_deck",
+          "columnsFrom": [
+            "user_deck_id"
           ],
           "columnsTo": [
             "id"
@@ -123,6 +197,19 @@
         "username": {
           "name": "username",
           "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         }
